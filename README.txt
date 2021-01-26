@@ -15,22 +15,30 @@ The WiiDatabase Toolkit provides various shortcodes for WiiDatabase.de. It has o
 The WiiDatabase Toolkit ships the following shortcodes:
 
 * [color-box]
+* [spoiler]
 
 = color-box =
 Displays a colored box according to its level. Supports the following arguments:
 
 * `title`: Heading of the box (default: none)
 * `level`: Color of the box: `info` = blue, `warning` = yellow, `danger` = red, `success` = green (default: `info`)
-* `slim`: Shrink box (default: false) - NOTE: Title won't be shown!
+* `slim`: Shrink box (default: `false`) - NOTE: Title won't be shown!
+
+= spoiler =
+Displays an expandable spoiler. Works without JavaScript!
+
+* `title`: Heading of the spoiler (default: "Spoiler")
+* `expanded`: Expand the spoiler by default (default: `false`)
 
 == Installation ==
 
-1. Upload `wiidatabase-toolkit.php` to the `/wp-content/plugins/` directory
+1. Upload the folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Screenshots ==
 
 1. color-box shortcode
+2. spoiler shortcode
 
 == Changelog ==
 

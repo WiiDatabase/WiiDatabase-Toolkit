@@ -174,6 +174,7 @@ class Wiidatabase_Toolkit
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 		$this->loader->add_shortcode('color-box', $plugin_public, 'color_box_shortcode');
+		$this->loader->add_shortcode('spoiler', $plugin_public, 'spoiler_shortcode');
 	}
 
 	/**
