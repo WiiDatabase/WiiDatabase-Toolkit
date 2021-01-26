@@ -98,6 +98,7 @@ details>summary {
 }
 
 /* 'list-style: none' for WebKit browsers */
+
 details>summary::-webkit-details-marker {
     display: none;
 }
@@ -112,15 +113,14 @@ details>summary:hover {
 details>summary::before {
     padding-left: .25rem;
     padding-right: .25rem;
-    content: '+ ';
+    content: '+';
 }
 
 /* Open */
 
 details[open]>summary::before {
-    padding-left: .25rem;
-    padding-right: .25rem;
-    content: '- ';
+    padding-right: .5rem;
+    content: '–';
 }
 
 details[open]>summary {
