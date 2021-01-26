@@ -1,6 +1,9 @@
+/* Boxes */
+
 /* Outer box */
 
 .wiidatabase-box {
+    margin-bottom: 1rem;
     margin-top: 1rem;
     line-height: 1.5;
     padding: 1.25rem 1.25rem 1rem 1.75rem;
@@ -75,4 +78,59 @@
 
 .wiidatabase-box-success::before {
     background-color: #00a91c;
+}
+
+/* Spoiler */
+
+/* Whole spoiler box */
+
+details {
+    border: 1px solid #aaa;
+    background-color: #f0f0f0;
+    margin: .2rem;
+}
+
+/* Spoiler header */
+
+details>summary {
+    font-weight: bold;
+    list-style: none;
+    user-select: none;
+}
+
+/* 'list-style: none' for WebKit browsers */
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+details>summary:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+/* Collapsed */
+
+details>summary::before {
+    padding-left: .25rem;
+    padding-right: .25rem;
+    content: '+';
+}
+
+/* Open */
+
+details[open]>summary::before {
+    padding-right: .5rem;
+    content: '–';
+}
+
+details[open]>summary {
+    background-color: #e6e6e6;
+    border-bottom: 1px solid #aaa;
+}
+
+/* Body */
+
+.spoiler-body {
+    padding: .5rem;
 }

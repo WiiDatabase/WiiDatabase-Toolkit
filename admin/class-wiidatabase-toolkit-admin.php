@@ -62,7 +62,7 @@ class Wiidatabase_Toolkit_Admin
 	 */
 	public function enqueue_styles()
 	{
-		// wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wiidatabase-toolkit-admin.css', array(), $this->version, 'all');
+		// wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wiidatabase-toolkit-admin' . (WP_DEBUG === true ? '' : '.min') . '.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -72,6 +72,6 @@ class Wiidatabase_Toolkit_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wiidatabase-toolkit-admin.js', array('jquery'), $this->version, false);
+		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wiidatabase-toolkit-admin' . (WP_DEBUG === true ? '' : '.min') . '.js', array('jquery'), $this->version, false);
 	}
 }
