@@ -61,7 +61,7 @@ class Wiidatabase_Toolkit_Public
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wiidatabase-toolkit-public.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wiidatabase-toolkit-public' . (WP_DEBUG === true ? '' : '.min') . '.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Wiidatabase_Toolkit_Public
 	 */
 	public function enqueue_scripts()
 	{
-		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wiidatabase-toolkit-public.js', array('jquery'), $this->version, false);
+		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wiidatabase-toolkit-public' . (WP_DEBUG === true ? '' : '.min') . '.js', array('jquery'), $this->version, false);
 	}
 
 	/**
@@ -140,6 +140,47 @@ class Wiidatabase_Toolkit_Public
 		$output .= '</div>'; // ./wiidatabase-box-text
 		$output .= '</div>'; // ./wiidatabase-box-body
 		$output .= '</div>'; // ./wiidatabase-box
+
+		return $output;
+	}
+
+	/**
+	 * The [spoiler] shortcode.  Accepts a title and will display an expandable spoiler.
+	 *
+	 * @param array  $atts     Shortcode attributes. Default empty.
+	 * 	Supported attributes are:
+	 * 		string	$title		Spoiler title (default: "Spoiler")
+	 * 		boolean $expanded	Expands the spoiler by default (default: false)
+	 * @param atring $content  Shortcode content. Default null.
+	 *
+	 * @since    1.0.0
+	 * @return string
+	 */
+	public function spoiler_shortcode($atts, $content)
+	{
+		// normalize attribute keys, lowercase
+		$atts = array_change_key_case((array) $atts, CASE_LOWER);
+
+		// override default attributes with user attributes
+		$shortcode_atts = shortcode_atts([
+			'title' => 'Spoiler',
+			'initial_state' => 'collapsed',
+			'expanded' => false
+		], $atts);
+		$shortcode_atts['expanded'] = filter_var($shortcode_atts['expanded'], FILTER_VALIDATE_BOOLEAN);
+
+		// Backwards compatibility with Inline Spoilers plugin
+		if ($shortcode_atts['initial_state'] === 'expanded') {
+			$shortcode_atts['expanded'] = true;
+		}
+
+		// start output
+		$output = $shortcode_atts['expanded'] === true ? '<details open>' : '<details>';
+		$output .= '<summary>' . esc_attr($shortcode_atts['title'])  . '</summary>';
+		$output .= '<div class="spoiler-body">';
+		$output .= do_shortcode($content);
+		$output .= '</div>';
+		$output .= '</details>';
 
 		return $output;
 	}
