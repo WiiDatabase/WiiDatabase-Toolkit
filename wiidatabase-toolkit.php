@@ -16,7 +16,7 @@
  * Plugin Name:       WiiDatabase Toolkit
  * Plugin URI:        https://wiidatabase.de/
  * Description:       The WiiDatabase toolkit provides various shortcodes for WiiDatabase.de. It has only been tested with the WiiDatabase theme!
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            WiiDatabase.de
  * Author URI:        https://wiidatabase.de/
  * License:           GPL-2.0+

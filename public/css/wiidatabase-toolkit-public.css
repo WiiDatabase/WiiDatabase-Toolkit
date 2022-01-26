@@ -3,6 +3,8 @@
 /* Outer box */
 
 .wiidatabase-box {
+    overflow: hidden;
+    width: 100%;
     margin-bottom: 1rem;
     margin-top: 1rem;
     line-height: 1.5;
