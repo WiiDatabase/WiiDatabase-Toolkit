@@ -1,0 +1,26 @@
+{
+  "name": "wiidatabase-toolkit",
+  "version": "2.0.0",
+  "author": "WiiDatabase.de",
+  "description": "The WiiDatabase Toolkit provides various shortcodes for WiiDatabase.de.",
+  "license": "Unlicense",
+  "repository": {
+    "url": "https://github.com/WiiDatabase/WiiDatabase-Toolkit"
+  },
+  "scripts": {
+    "global:check-dependencies": "npm-check --skip-unused"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "devDependencies": {
+    "autoprefixer": "10.4.7",
+    "postcss-cli": "9.1.0",
+    "sass": "1.52.3"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
+}

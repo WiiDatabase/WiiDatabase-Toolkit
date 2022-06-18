@@ -2,11 +2,11 @@
 Contributors: WiiDatabase Team
 Donate link: https://wiidatabase.de/
 Tags: shortcodes
-Requires at least: 5.0
-Tested up to: 5.6
-Stable tag: 1.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 8.0
+Requires at least: 6.0
+Tested up to: 6.0
+Stable tag: 2.0
+License: Unlicense
 
 The WiiDatabase Toolkit provides various shortcodes for WiiDatabase.de. It has only been tested with the WiiDatabase theme!
 
@@ -35,17 +35,12 @@ Displays an expandable spoiler. Works without JavaScript!
 1. Upload the folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-== Screenshots ==
-
-1. color-box shortcode
-2. spoiler shortcode
-
 == Changelog ==
+
+= 2.0 =
+* Reorganize code with Autoloader
+* Fix margin in boxes
 
 = 1.0 =
 * Stable release
 
-== Upgrade Notice ==
-
-= 1.0 =
-First stable release.

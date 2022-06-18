@@ -1,0 +1,74 @@
+version: "3"
+
+dotenv: [ '.env.local', '.env' ]
+
+env:
+  PLUGIN_VERSION:
+    sh: node -p "require('./package.json').version"
+
+tasks:
+  fix-scripts:
+    desc: Set the executable bit for the scripts
+    cmds:
+      - chmod +x ./scripts/*.sh
+    sources:
+      - scripts/*.sh
+    run: once
+
+  create-dir:
+    desc: Create output directory
+    cmds:
+      - chmod +x ./scripts/*.sh
+      - mkdir -p "{{.OUTPUT_DIR}}"
+    status:
+      - test -d "{{.OUTPUT_DIR}}"
+    run: once
+
+  copy:
+    desc: Copy 'src/root/*' to the root of the output directory
+    deps: [ create-dir, composer ]
+    sources:
+      - src/root/**/**
+    cmds:
+      - cp -r src/root/* {{.OUTPUT_DIR}}/
+      - sed -i 's/__WIIDATABASE_VERSION_REPLACED_AT_BUILD__/{{.PLUGIN_VERSION}}/g' {{.OUTPUT_DIR}}/wiidatabase-toolkit.php
+      - rm -rf {{.OUTPUT_DIR}}/composer.json
+      - rm -rf {{.OUTPUT_DIR}}/composer.lock
+
+  composer:
+    desc: Run composer autoload
+    deps: [ create-dir ]
+    dir: src/root/
+    sources:
+      - classes/**
+      - composer.lock
+    cmds:
+      - composer dump-autoload -o --no-dev
+
+  css:
+    desc: Compile SCSS
+    deps: [ create-dir, fix-scripts ]
+    sources:
+      - src/scss/*.scss
+    cmds:
+      - ./scripts/compile-scss.sh ./src/scss/style.scss {{.OUTPUT_DIR}}/assets/css/style.css
+
+  clean:
+    desc: Delete task cache and output folder
+    cmds:
+      - rm -rf {{.OUTPUT_DIR}}/*
+      - rm -rf .task/*
+
+  release:
+    desc: Create release ZIP
+    cmds:
+      - task: clean
+      - task: default
+      - 7z a -tzip dist/WiiDatabase-Toolkit-v{{.PLUGIN_VERSION}}.zip -w {{.OUTPUT_DIR}}/.
+
+  default:
+    desc: Compile all assets and SCSS files and copy them to the output directory
+    deps: [ copy, css ]
+    silent: true
+    cmds:
+      - echo "Built v{{.PLUGIN_VERSION}}"

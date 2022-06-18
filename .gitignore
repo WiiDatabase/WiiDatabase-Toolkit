@@ -1,0 +1,9 @@
+build/
+dist/
+node_modules/
+vendor/
+.idea/
+.env.local
+*.iml
+.task
+.php-cs-fixer.cache
